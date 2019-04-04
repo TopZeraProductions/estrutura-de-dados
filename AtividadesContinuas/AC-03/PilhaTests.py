@@ -25,7 +25,7 @@ class TestPilha(unittest.TestCase):
     Certifique-se que pilha.valores é igual (equals) lista vazia.
     '''
     def test_isEmptyOnStart(self):
-        self.assertEqual(self.__pilha.valores, [], "Pilha não está sendo criada vazia")
+        self.assertEqual(self.__pilha.get_valores(), [], "Pilha não está sendo criada vazia")
 
     '''
     O método test_addsValue garante que a pilha adiciona o valor à lista interna quando usamos empilhar(1).
@@ -34,7 +34,7 @@ class TestPilha(unittest.TestCase):
     '''
     def test_addsValue(self):
         self.__pilha.empilhar(1)
-        self.assertIn(1, self.__pilha.valores, "Pilha não está adicionando valores à lista interna")
+        self.assertIn(1, self.__pilha.get_valores(), "Pilha não está adicionando valores à lista interna")
 
     '''
     O método test_empilharAddsToEnd garante que a pilha adiciona o valor à lista interna na posição correta quando usamos empilhar.
@@ -46,7 +46,7 @@ class TestPilha(unittest.TestCase):
     def test_empilharAddsToEnd(self):
         self.__pilha.empilhar(1)
         self.__pilha.empilhar(2)
-        self.assertEqual(self.__pilha.valores, [1,2], "Fila não está enfileirando na ordem correta")
+        self.assertEqual(self.__pilha.get_valores(), [1, 2], "Fila não está enfileirando na ordem correta")
 
     '''
     O método test_desempilharIsCorrectAndReturns garante que a pilha remove o valor da posição correta e o retorna.
@@ -64,8 +64,8 @@ class TestPilha(unittest.TestCase):
         self.__pilha.empilhar(2)
         valor = self.__pilha.desempilhar()
         self.assertEqual(valor, 1, "Pilha não está retornando o valor correto ao desenfileirar")
-        self.assertNotIn(valor, self.__pilha.valores, "O valor desenfileirado continua na fila")
-        self.assertIn(2, self.__pilha.valores, "Pilha não está desenfileirando na ordem correta")
+        self.assertNotIn(valor, self.__pilha.get_valores(), "O valor desenfileirado continua na fila")
+        self.assertIn(2, self.__pilha.get_valores(), "Pilha não está desenfileirando na ordem correta")
 
     '''
     O método test_popOnEmptyPilhaRaises garante que desempilhar em uma pilha vazia dê erro.
@@ -76,6 +76,8 @@ class TestPilha(unittest.TestCase):
     '''
 
     def test_popOnEmptyPilhaRaises(self):
+        with self.assertRaises(IndexError):
+            self.__pilha.desempilhar()
 
 
 unittest.main()

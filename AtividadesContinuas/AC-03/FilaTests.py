@@ -24,7 +24,7 @@ class TestFila(unittest.TestCase):
     Certifique-se que fila.valores é igual (equals) lista vazia.
     '''
     def test_isEmptyOnStart(self):
-        self.assertEqual(self.fila.valores, [], "Fila não está sendo criada vazia")
+        self.assertEqual(self.fila.get_valores(), [], "Fila não está sendo criada vazia")
 
     '''
     O método test_addsValue garante que a fila adiciona o valor à lista interna quando usamos enfileirar.
@@ -33,7 +33,7 @@ class TestFila(unittest.TestCase):
     '''
     def test_addsValue(self):
         self.fila.enfileirar(1)
-        self.assertIn(1, self.fila.valores, "Fila não está adicionando valores à lista interna")
+        self.assertIn(1, self.fila.get_valores(), "Fila não está adicionando valores à lista interna")
 
     '''
     O método test_enfileirarAddsToEnd garante que a fila adiciona o valor à lista interna quando usamos enfileirar na posição correta.
@@ -43,7 +43,7 @@ class TestFila(unittest.TestCase):
     def test_enfileirarAddsToEnd(self):
         self.fila.enfileirar(1)
         self.fila.enfileirar(2)
-        self.assertEqual(self.fila.valores, [1,2], "Fila não está enfileirando na ordem correta")
+        self.assertEqual(self.fila.get_valores(), [1,2], "Fila não está enfileirando na ordem correta")
 
     '''
     O método test_desenfileirarIsCorrectAndReturns garante que a fila remove o valor da posição correta e o retorna.
@@ -60,8 +60,8 @@ class TestFila(unittest.TestCase):
         self.fila.enfileirar(2)
         valor = self.fila.desenfileirar()
         self.assertEqual(valor, 1, "Fila não está retornando o valor correto ao desenfileirar")
-        self.assertNotIn(valor, self.fila.valores, "O valor desenfileirado continua na fila")
-        self.assertIn(2, self.fila.valores, "Fila não está desenfileirando na ordem correta")
+        self.assertNotIn(valor, self.fila.get_valores(), "O valor desenfileirado continua na fila")
+        self.assertIn(2, self.fila.get_valores(), "Fila não está desenfileirando na ordem correta")
 
     '''
     O método test_popOnEmptyFilaRaises garante que desenfileirar em uma fila vazia dê erro.
