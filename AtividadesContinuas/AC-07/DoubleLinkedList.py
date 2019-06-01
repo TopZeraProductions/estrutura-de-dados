@@ -112,7 +112,7 @@ A saída do programa deve ser:
 [No(10), No(20), No(30), No(40)]
 [No(20), No(30), No(40)]
 [No(20), No(30), No(40)]
-[No(20), No(30)]
+[No(20), Noy(30)]
 [No(20)]
 []
 '''
